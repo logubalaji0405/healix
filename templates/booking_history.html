@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Booking History{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4">My Appointment History</h2>
+
+    {% if appointments %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in appointments %}
+                    <tr>
+                        <td>Dr. {{ a.doctor.username }}</td>
+                        <td>{{ a.appointment_date }}</td>
+                        <td>{{ a.appointment_time }}</td>
+                        <td>{{ a.reason }}</td>
+                        <td>{{ a.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No appointments found.</p>
+    {% endif %}
+</div>
+{% endblock %}
